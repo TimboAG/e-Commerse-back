@@ -58,4 +58,38 @@ public class UsuarioMapper {
     return usuarios;
   }
 
+  public static UsuarioDTO toDTORegistro(Usuario usuario) {
+    UsuarioDTO usuarioDTO = new UsuarioDTO();
+    usuarioDTO.setEmail(usuario.getEmail());
+    usuarioDTO.setNombre(usuario.getNombre());
+    usuarioDTO.setNombreUsuario(usuario.getNombreUsuario());
+    usuarioDTO.setPassword(usuario.getPassword());
+    return usuarioDTO;
+  }
+
+  public static List<UsuarioDTO> toDTOListRegistro(List<Usuario> usuarios) {
+    List<UsuarioDTO> usuarioDTOs = new ArrayList<>();
+    for (Usuario usuario : usuarios) {
+      usuarioDTOs.add(toDTORegistro(usuario));
+    }
+    return usuarioDTOs;
+  }
+
+  public static Usuario toEntityRegistro(UsuarioDTO usuarioDTO) {
+    Usuario usuario = new Usuario();
+    usuario.setEmail(usuarioDTO.getEmail());
+    usuario.setNombre(usuarioDTO.getNombre());
+    usuario.setNombreUsuario(usuarioDTO.getNombreUsuario());
+    usuario.setPassword(usuarioDTO.getPassword());
+    return usuario;
+  }
+
+  public static List<Usuario> toEntityListRegistro(List<UsuarioDTO> usuarioDTOs) {
+    List<Usuario> usuarios = new ArrayList<>();
+    for (UsuarioDTO usuarioDTO : usuarioDTOs) {
+      usuarios.add(toEntityRegistro(usuarioDTO));
+    }
+    return usuarios;
+  }
+
 }
