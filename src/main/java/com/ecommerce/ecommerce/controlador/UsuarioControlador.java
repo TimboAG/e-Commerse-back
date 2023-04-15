@@ -28,8 +28,9 @@ public class UsuarioControlador {
     return new ResponseEntity<>(usuarioRegistrado, HttpStatus.CREATED);
   }
 
-  @GetMapping(path = "confirm")
+  @GetMapping("/confirmacion")
   public String confirmacionToken(@RequestParam("token") String token) {
     return usuarioServicio.confirmacionToken(token);
   }
+
 }

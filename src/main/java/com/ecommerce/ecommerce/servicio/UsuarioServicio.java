@@ -63,25 +63,29 @@ public class UsuarioServicio implements UserDetailsService {
   }
 
   @Transactional
-  public String confirmToken(String token) {
-    RegistrationToken registrationToken = registrationTokenService.getToken(token);
+  public String confirmacionToken(String token) {
+    RegistroToken registroToken = registroTokenServicio.getToken(token);
 
-    if (registrationToken == null) {
+    if (registroToken == null) {
       throw new IllegalStateException("token not found");
     }
 
-    if (registrationToken.getConfirmedAt() != null) {
-      throw new IllegalStateException("email already confirmed");
+    if (registroToken.getConfirmado() != null) {
+      throw new IllegalStateException("el email ya fue confirmado");
     }
 
-    if (registrationToken.getExpiresAt().isBefore(LocalDateTime.now())) {
-      throw new IllegalStateException("token expired");
+    if (registroToken.getExpirado().isBefore(LocalDateTime.now())) {
+      throw new IllegalStateException("token expiro");
     }
 
-    registrationTokenService.setConfirmedAt(token);
-    userService.enableUser(registrationToken.getUser().getEmail());
+    registroTokenServicio.setConfirmedAt(token);
+    buscarProEmail(registroToken.getUsuario().getEmail());
 
-    return "confirmed";
+    return "confirmado";
+  }
+
+  public void buscarProEmail(String email) {
+    usuarioRepositorio.buscarPorEmail(email);
   }
 
   @Override
