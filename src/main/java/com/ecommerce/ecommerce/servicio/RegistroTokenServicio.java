@@ -24,7 +24,6 @@ public class RegistroTokenServicio {
 
   public RegistroToken getToken(String token) {
     Optional<RegistroToken> tokenFound = regristroTokenRepositorio.findByToken(token);
-
     return tokenFound.get();
   }
 

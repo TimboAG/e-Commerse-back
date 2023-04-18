@@ -2,6 +2,8 @@ package com.ecommerce.ecommerce.dto;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.ecommerce.ecommerce.enumeracion.Rol;
 
 import lombok.AllArgsConstructor;
@@ -11,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Component
 public class UsuarioDTO {
   private Integer id;
   private String nombre;

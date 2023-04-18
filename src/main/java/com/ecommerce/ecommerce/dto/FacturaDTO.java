@@ -2,6 +2,8 @@ package com.ecommerce.ecommerce.dto;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Component
 public class FacturaDTO {
   private Integer id;
   private String numero;
