@@ -1,11 +1,8 @@
 package com.ecommerce.ecommerce;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,7 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.ecommerce.ecommerce.servicio.UsuarioServicio;
+import com.ecommerce.ecommerce.servicio.DetalleUsuario;
+import com.ecommerce.ecommerce.servicio.ServiciosImp.UsuarioServicioImp;
 
 @Configuration
 @EnableWebSecurity
@@ -22,11 +20,11 @@ import com.ecommerce.ecommerce.servicio.UsuarioServicio;
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
 
   @Autowired
-  public UsuarioServicio usuarioServicio;
+  public DetalleUsuario detalleUsuario;
 
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(usuarioServicio).passwordEncoder(new BCryptPasswordEncoder());
+    auth.userDetailsService(detalleUsuario).passwordEncoder(new BCryptPasswordEncoder());
   }
 
   @Override
