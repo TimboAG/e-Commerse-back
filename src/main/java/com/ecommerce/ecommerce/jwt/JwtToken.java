@@ -6,4 +6,6 @@ public interface JwtToken {
   boolean validarToken(String token, String email);
 
   String getSubject(String token);
+
+  boolean isTokenExpired(String token);
 }
